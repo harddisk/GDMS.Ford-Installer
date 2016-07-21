@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnyConnectPreferences>
+	<DefaultUser></DefaultUser>
+	<DefaultSecondUser></DefaultSecondUser>
+	<ClientCertificateThumbprint></ClientCertificateThumbprint>
+	<ServerCertificateThumbprint></ServerCertificateThumbprint>
+	<DefaultHostName>connect.simedarby.com</DefaultHostName>
+	<DefaultHostAddress></DefaultHostAddress>
+	<DefaultGroup>CONTRACTOR</DefaultGroup>
+	<ProxyHost></ProxyHost>
+	<ProxyPort></ProxyPort>
+	<SDITokenType></SDITokenType>
+	<ControllablePreferences>
+		<LocalLanAccess>false</LocalLanAccess>
+		<BlockUntrustedServers>false</BlockUntrustedServers>
+	</ControllablePreferences>
+</AnyConnectPreferences>

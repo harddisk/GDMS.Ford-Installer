@@ -1,0 +1,54 @@
+<html>
+
+<script language="JavaScript">
+	installed = false;
+	netscape = (navigator.appName.indexOf("Netscape") != -1);
+
+	// See if WebClient is installed
+	if (netscape)
+	{
+		var mimeTypes = navigator.mimeTypes["application/progress-wcappcab"];
+		if (mimeTypes)
+			installed = true;
+	}
+</script>
+
+<script language="VBScript">
+	' This is ignored by Netscape
+
+	On Error Resume Next
+
+	set ctrl = CreateObject("ProWCVer.ComObj.1")
+	if isObject(ctrl) then
+		installed = true
+	end if
+</script>
+
+<script language="JavaScript">
+	if (installed)
+	{
+		// Reference a prowcapp file to invoke prowcini.exe
+		// NOTE: MODIFY THIS URL TO POINT TO YOUR .prowcapc FILE.
+		document.location.href = "http://MyWebServer/webclient/myapplication.prowcapc";
+	}
+	else
+	{
+		// Start install process for Web Client
+		// NOTE: MODIFY THIS URL TO POINT TO THE WebClient Install page
+		window.location = "http://MyWebServer/webclient/webclient.htm";
+	}
+
+</script>
+
+<body>
+
+<!--// NOTE: THIS TEXT CAN BE MODIFIED //-->
+<p align="center"><font face="Verdana, Arial, Helvetica" size="3">This Application is Powered by Progress</tr>
+<p align="center"><font face="Verdana, Arial, Helvetica" size="3">Thank you for using our application!</tr>
+
+<!--// NOTE: THIS URL CAN BE CHANGED TO POINT TO AN APPLICATION SPECIFIC JPG
+	   OR OTHER APPLICATION SPECIFIC HTML CAN BE PLACED HERE.//-->
+<p align="center"><img SRC="graphics/WCSplash.jpg" height=250 width=350>
+
+</body>
+</html>

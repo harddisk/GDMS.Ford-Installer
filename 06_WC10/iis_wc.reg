@@ -1,0 +1,10 @@
+REGEDIT4   
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.prowcapp]
+@="ProgressWebClientApp"
+"Content Type"="application/progress-wcapp"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.prowcapc]
+@="ProgressWebClientApp" 
+"Content Type"="application/progress-wcappcab"
+

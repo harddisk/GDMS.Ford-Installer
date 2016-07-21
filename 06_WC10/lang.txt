@@ -1,0 +1,36 @@
+#Type(0=Translated 1=Untranslated);3-letter_abbrev;display_name
+0;cze;Czech
+0;dut;Dutch
+0;eng;English - International
+0;ame;English - American
+0;fre;French
+0;ger;German
+0;ita;Italian
+0;pol;Polish
+0;por;Portuguese
+0;brz;Portuguese - Brazilian
+0;spa;Spanish
+0;spl;Spanish - Latin American
+0;swe;Swedish
+1;arb;Arabic;79b85831f4a51a04c4597916b11f1ad4;6ab67d11155ff454c63e23fcd4da1b22
+1;sch;Chinese - Simplified;ca519a5b88e9b4b78d9372cdb5550584;0a0e8cb7b0f5cd0b46efe46700b4a6c5
+1;tch;Chinese - Traditional;cc4a32b4e32d28e47566ab66c3c4e2a8;941e9f6ddb1ae291f7bf178984732ef6
+1;hrv;Croatian;56563144586df2d800ef70de050162ad;0ddf02e3c8bf302fdfe64f6e11e80c68
+1;dan;Danish;68f39ea43c8bb511c029257ec3683718;fb7bedf99f72b642eb37d8fef01485d5
+1;fin;Finnish;458ce48d37330eadefdce46a0ae9c3d8;5cc35586a40b0df71c46617b9047d745
+1;gre;Greek;94c1bdd21d07e69427a7e7e3b259a9ee;a6c4f068df5b22fe56fa81b8f70da415
+1;hbr;Hebrew;ac2f3e7341799479545d43b83e91b03f;18511ece5187cb630da8b30422b5f0e7
+1;hun;Hungarian;93074e4a9f6b2719fff9839f8fc8ca95;f75d914c1afd2fb207c8cbdea9336411
+1;isl;Icelandic;1931661b9451ea34b139c096dea89a11;d254e1e13a3efa7b0a07a004bf3db247
+1;jpn;Japanese;6d806ba248a76768dfebcaad4c62ae7b;228ab16b8381ef75c0f438acc2de5e07
+1;kor;Korean;b02d4aa1e44f4259e4c3277fd69e767b;01a5690f9e1a4a95d53384151c3a2c10
+1;lit;Lithuanian;5835357e42f439f56717f7d6ed5f2685;90bae01591e0567a387836cf53108db9
+1;nor;Norwegian;3be9aaf6d6955bdd7b2145069a65f749;2026fe6a1943d6c75650b6e75e9933f0
+1;per;Persian;3bf4889a641db4c962c1b4aff5b8692e;b2d33325ca84fc77941ef54a05d83ac6
+1;rom;Romanian;a05f84add18ec5ce302949287d42eb2c;1573a9f5ff62638c622d145674dc8442
+1;rus;Russian;041bfcf7865922c731ad3c85188b2ec5;416374a194cf4716fd0b0afa9226b64a
+1;srb;Serbian;6f3013636e598bee0aac6b69bddd034b;25c1c74c494d409dec8ff692850bb8cd
+1;svk;Slovak;726c6abe26f84aeeff1ddb62a4febfd5;89ac22b8f19cd6615d4b0957785bf5bd
+1;svn;Slovenian;5bd2f886bf04d398ebd923107eea6743;42984af721b2ec835901b64911afc3fa
+1;tai;Thai;5026ffc09100ea0cacdb36637c6bab7d;cf87cb3ea403e7bde515c8e875c559b7
+1;tur;Turkish;e084ed823df8664ee6c9903b1d4b60b5;53917d74302bef347395bd223b5d86d7
