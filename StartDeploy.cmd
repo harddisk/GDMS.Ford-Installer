@@ -1073,12 +1073,12 @@ IF "%1" EQU "7" (
 	set i7stat=OK
 	set i7mesg=
 	IF "%webc%" EQU "FD" (
-		call :checkFile i7stat i7mesg "07_WCA\hdlive.prowcapc"
-		call :checkFile i7stat i7mesg "07_WCA\hdtrain.prowcapc"
+		call :checkFile i7stat i7mesg "07_WCA\fdlive.prowcapc"
+		call :checkFile i7stat i7mesg "07_WCA\fdtrain.prowcapc"
 	)
 	IF "%webc%" EQU "FC" (
-		call :checkFile i7stat i7mesg "07_WCA\htlive.prowcapc"
-		call :checkFile i7stat i7mesg "07_WCA\httrain.prowcapc"
+		call :checkFile i7stat i7mesg "07_WCA\fclive.prowcapc"
+		call :checkFile i7stat i7mesg "07_WCA\fcrain.prowcapc"
 	)
 )
 REM /* checks Webclient Apps: Print Service
