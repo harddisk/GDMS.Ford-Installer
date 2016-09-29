@@ -21,9 +21,9 @@ set NLM=^
 set NL=^^^%NLM%%NLM%^%NLM%%NLM%
 REM /* set WebClient default to FC Live
 IF "%webc%" EQU "" (
-    set webc=FC
-    set wclive=fclive.prowcapc
-    set wctrain=fctrain.prowcapc
+    set webc=FD
+    set wclive=fdlive.prowcapc
+    set wctrain=fdtrain.prowcapc
     set vpnuser=hd_preferences.xml
     set vpnglob=hd_preferences_global.xml
 )
@@ -232,15 +232,14 @@ echo         [3^|c] - PuTTY                                          ... [%i3sta
 echo         [4^|d] - Crystal Report                                 ... [%i4stat%]
 echo         [5^|e] - Web Client v9                                  ... [%i5stat%]
 echo         [6^|f] - Web Client v10                                 ... [%i6stat%]
-echo         [7^|g] - %webc% Live/Train (requires Web Client v9)         ... [%i7stat%]
+echo         [7^|g] - %webc% Live/Train (requires Web Client v9) [s]     ... [%i7stat%]
 echo         [8^|h] - Print Service (requires Web Client v10)        ... [%i8stat%]
 echo.
 echo           [x] - Exit
 echo.
 echo         [1-8] - install specified item and the rest of item(s).
 echo         [a-h] - install ONLY single item.
-REM /* echo           [s] - switch between HD Live/Train or HT Live/Train
-echo.
+echo           [s] - switch between FD Live/Train or FC Live/Train
 echo.
 set /p menu="# Please enter your choice: "
 IF /i "%menu%" EQU "1" (set SINGLE_INSTALL=0&& goto 01_VPN)
@@ -259,6 +258,29 @@ IF /i "%menu%" EQU "7" (set SINGLE_INSTALL=0&& goto 07_WCA)
 IF /i "%menu%" EQU "g" (set SINGLE_INSTALL=1&& goto 07_WCA)
 IF /i "%menu%" EQU "8" (set SINGLE_INSTALL=0&& goto 08_PRS)
 IF /i "%menu%" EQU "h" (set SINGLE_INSTALL=1&& goto 08_PRS)
+IF /i "%menu%" EQU "s" (
+	IF /i "%webc%" EQU "FD" (
+		set webc=FC
+		set vpnuser=ht_preferences.xml
+		set vpnglob=ht_preferences_global.xml
+		set wclive=fclive.prowcapc
+		set wctrain=fctrain.prowcapc
+	)
+	IF /i "%webc%" EQU "FC" (
+		set webc=FD
+		set vpnuser=hd_preferences.xml
+		set vpnglob=hd_preferences_global.xml
+		set wclive=fdlive.prowcapc
+		set wctrain=fdtrain.prowcapc
+	)
+	echo.
+	echo                    ==========================================
+	echo                    ^|            Switched to [!webc!]            ^|
+	echo                    ==========================================
+	echo.
+	call :halt 2
+	goto menu
+)
 IF /i "%menu%" EQU "x" (goto end)
 IF /i "%menu%" EQU "z" (
 	REM /* hidden menu, show all missing files
@@ -780,7 +802,7 @@ IF "%i7stat%" EQU "OK" (
 	echo     ^|    07 WebClient Live/Train applications setup . . .                  ^|
 	echo     ^|======================================================================^|
 	REM /* detect IF application already installed -- find program folder
-	REM /*   \WebClientApps\SIME\HD/HT Live GDMS
+	REM /*   \WebClientApps\SIME\FD/FC Live GDMS
 	echo     ^|       ^> Scanning %webc% Live installation . . .                          ^|
 	IF NOT EXIST "%ProgFiles%\WebClientApps\SIME\%webc% Live GDMS\" (
 		echo     ^|         + No existing installation found.                            ^|
@@ -816,7 +838,7 @@ IF "%i7stat%" EQU "OK" (
 		echo     ^|======================================================================^|
 	)
 	REM /* detect IF application already installed -- find program folder
-	REM /*   \WebClientApps\SIME\HD/HT Train GDMS
+	REM /*   \WebClientApps\SIME\FD/FC Train GDMS
 	echo     ^|       ^> Scanning %webc% Train installation . . .                         ^|
 	IF NOT EXIST "%ProgFiles%\WebClientApps\SIME\%webc% Train GDMS\" (
 		echo     ^|         + No existing installation found.                            ^|
@@ -868,7 +890,7 @@ IF "%SINGLE_INSTALL%" EQU "1" (
     call :halt 2
     goto menu
 )
-REM /* HD/HT Live/Train - end
+REM /* FD/FC Live/Train - end
 
 :08_PRS
 title [%osv%] [%arch%] Configuring Printing Service . . .
@@ -950,15 +972,11 @@ IF "%1" EQU "1" (
 	set i1stat=OK
 	set "i1mesg="
 	call :checkFile i1stat i1mesg "01_VPN\anyconnect-win-3.1.04059-web-deploy-k9.exe"
-	IF "%webc%" EQU "FC" (
-        call :checkFile i1stat i1mesg "10_Prerequisites\hd_preferences.xml"
-		call :checkFile i1stat i1mesg "10_Prerequisites\hd_preferences_global.xml"
-	)
-	IF "%webc%" EQU "HD" (
+	IF "%webc%" EQU "FD" (
 		call :checkFile i1stat i1mesg "10_Prerequisites\hd_preferences.xml"
 		call :checkFile i1stat i1mesg "10_Prerequisites\hd_preferences_global.xml"
 	)
-	IF "%webc%" EQU "HT" (
+	IF "%webc%" EQU "FC" (
 		call :checkFile i1stat i1mesg "10_Prerequisites\ht_preferences.xml"
 		call :checkFile i1stat i1mesg "10_Prerequisites\ht_preferences_global.xml"
 	)
@@ -1049,20 +1067,16 @@ IF "%1" EQU "6" (
 		call :checkFile i6stat i6mesg "10_Prerequisites\WC10_x64.iss"
 	)
 )
-REM /* checks Webclient Apps: HD/HT Live/Train
+REM /* checks Webclient Apps: FD/FC Live/Train
 IF "%1" EQU "7" (
 	REM /* clear variables
 	set i7stat=OK
 	set i7mesg=
-    IF "%webc%" EQU "FC" (
-		call :checkFile i7stat i7mesg "07_WCA\fclive.prowcapc"
-		call :checkFile i7stat i7mesg "07_WCA\fctrain.prowcapc"
-    )
-	IF "%webc%" EQU "HD" (
+	IF "%webc%" EQU "FD" (
 		call :checkFile i7stat i7mesg "07_WCA\hdlive.prowcapc"
 		call :checkFile i7stat i7mesg "07_WCA\hdtrain.prowcapc"
 	)
-	IF "%webc%" EQU "HT" (
+	IF "%webc%" EQU "FC" (
 		call :checkFile i7stat i7mesg "07_WCA\htlive.prowcapc"
 		call :checkFile i7stat i7mesg "07_WCA\httrain.prowcapc"
 	)
