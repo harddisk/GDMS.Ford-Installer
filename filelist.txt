@@ -2,10 +2,19 @@ Folder PATH listing for volume Data
 Volume serial number is 8A48-2A85
 D:.
 |   filelist.txt
-|   filelist1.txt
-|   filelist2.txt
 |   StartDeploy.cmd
 |   
++---.idea
+|   |   compiler.xml
+|   |   GDMS.Ford Installer.iml
+|   |   misc.xml
+|   |   modules.xml
+|   |   vcs.xml
+|   |   workspace.xml
+|   |   
+|   \---copyright
+|           profiles_settings.xml
+|           
 +---01_VPN
 |       anyconnect-win-3.1.04059-web-deploy-k9.exe
 |       
@@ -77,12 +86,11 @@ D:.
 +---07_WCA
 |       fclive.prowcapc
 |       fctrain.prowcapc
+|       fdlive.prowcapc
+|       fdtrain.prowcapc
 |       printservice.prowcapc
 |       
 +---10_Golden_Goose_Eggs
-|       CurrentControlSet.reg
-|       Default.opt
-|       default.usr
 |       DiReg.cmd
 |       EnReg.cmd
 |       FixCiscoDNS.cmd
@@ -90,20 +98,18 @@ D:.
 |       FwAllow_x86.reg
 |       FwRules_w7_x64.reg
 |       GDMS PrintService.lnk
-|       HD Live GDMS.lnk
-|       HD Train GDMS.lnk
-|       HKCU Connections.reg
-|       HKCU SimeDarbyGroupRealm.reg
-|       HKLM Connections.reg
-|       HKLM SimeDarbyGroupRealm.reg
-|       rasphone.pbk
 |       Reg_HKCU.cmd
 |       Reg_HKLM.cmd
-|       Remove SIME WebClient Uninstall entries x64.reg
-|       SIME WebClient registry hack x64.reg
-|       Uninstall HD Live.lnk
-|       Uninstall HD Train.lnk
-|       Uninstall PrintService.lnk
+|       SIME FC Live (x64) - Install.reg
+|       SIME FC Live (x64) - Uninstall.reg
+|       SIME FC Train (x64) - Install.reg
+|       SIME FC Train (x64) - Uninstall.reg
+|       SIME FD Live (x64) - Install.reg
+|       SIME FD Live (x64) - Uninstall.reg
+|       SIME FD Train (x64) - Install.reg
+|       SIME FD Train (x64) - Uninstall.reg
+|       SIME PrintService (x64) - Install.reg
+|       SIME PrintService (x64) - Uninstall.reg
 |       
 +---10_Prerequisites
 |       FileZilla Server.xml
@@ -135,8 +141,16 @@ D:.
 |       Install Putty part 2.doc
 |       
 \---13_Obsolete_Files
+        CurrentControlSet.reg
+        Default.opt
+        default.usr
         FileZilla_Server-0_9_53.exe
         GuildFTPd_0.999.14.exe
+        HKCU Connections.reg
+        HKCU SimeDarbyGroupRealm.reg
+        HKLM Connections.reg
+        HKLM SimeDarbyGroupRealm.reg
+        rasphone.pbk
         vcredist_x64.exe
         vcredist_x86 (1).exe
         vcredist_x86.exe
