@@ -4,6 +4,7 @@ REM /* GDMS Deployment batch script version 1.6
 REM /* Copyright (c) 2013 by Cw Tham (cw.tham@hyundai.com.my)
 REM /*
 REM /* 2016-02-03: update file just for Git update to test AutoCRLF
+REM /* 2017-03-07: replaced SAP Crystal 13 with version XI for Cash Collection module.
 REM /*
 setlocal enableextensions enabledelayedexpansion
 set debug=0
@@ -607,7 +608,7 @@ IF "%i4stat%" EQU "OK" (
 	REM /* detect IF application already installed -- find program folder
 	REM /*   \SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\Crystal Reports 2011
 	echo     ^|       ^> Scanning existing installation . . .                         ^|
-	IF NOT EXIST "%ProgFiles%\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\Crystal Reports 2011\" (
+	IF NOT EXIST "%ProgFiles%\Business Objects\BusinessObjects Enterprise 11.5\" (
 		echo     ^|         + No existing installation found.                            ^|
 		IF "%cmdv%" EQU "1" (
 			echo     ^|                                                                      ^|
@@ -641,8 +642,8 @@ IF "%i4stat%" EQU "OK" (
 
 		)
 		echo     ^|                                                                      ^|
-		echo     ^|       ^> Installing "CRRuntime_32bit_13_0_6.msi"                      ^|
-		call "CRRuntime_32bit_13_0_6.msi" /quiet /norestart
+		echo     ^|       ^> Installing "CrystalRunTime XI Service Pack 3.msi"            ^|
+		call "CrystalRunTime XI Service Pack 3.msi" /quiet /norestart
 		IF "%ERRORLEVEL%" EQU "0" (
 			echo     ^|         + Completed.                                                 ^|
 		) ELSE (
@@ -1013,7 +1014,7 @@ IF "%1" EQU "4" (
 	REM /* clear variables
 	set i4stat=OK
 	set i4mesg=
-	call :checkFile i4stat i4mesg "04_CRV\CRRuntime_32bit_13_0_6.msi"
+	call :checkFile i4stat i4mesg "04_CRV\CrystalRunTime XI Service Pack 3.msi"
 )
 REM /* checks Progress WebClient v9 files
 IF "%1" EQU "5" (
