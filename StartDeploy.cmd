@@ -5,6 +5,7 @@ REM /* Copyright (c) 2013 by Cw Tham (cw.tham@hyundai.com.my)
 REM /*
 REM /* 2016-02-03: update file just for Git update to test AutoCRLF
 REM /* 2017-03-07: replaced SAP Crystal 13 with version XI for Cash Collection module.
+REM /* 2017-03-08: add back SAP Crystal Reports Runtime Engine v13, required for RO/Invoice printing.
 REM /*
 setlocal enableextensions enabledelayedexpansion
 set debug=0
@@ -602,65 +603,124 @@ title [%osv%] [%arch%] Installing Crystal Report . . .
 REM /* proceed if files all check out OK
 IF "%i4stat%" EQU "OK" (
 	pushd 04_CRV
-	echo     ========================================================================
-	echo     ^|    04 SAP Crystal Reports Runtime Engine setup . . .                 ^|
-	echo     ^|======================================================================^|
-	REM /* detect IF application already installed -- find program folder
-	REM /*   \SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\Crystal Reports 2011
-	echo     ^|       ^> Scanning existing installation . . .                         ^|
-	IF NOT EXIST "%ProgFiles%\Business Objects\BusinessObjects Enterprise 11.5\" (
-		echo     ^|         + No existing installation found.                            ^|
-		IF "%cmdv%" EQU "1" (
-			echo     ^|                                                                      ^|
-			echo     ^|       ^> Checking DotNET Framework v3.5 installation . . .            ^|
-			IF EXIST "%windir%\Microsoft.NET\Framework\v3.5" (
-				echo     ^|         + DotNET Framework v3.5 already installed.                   ^|
-			) ELSE (
-				echo     ^|         x DotNET Framework v3.5 not found.                           ^|
-				echo     ^|         - Press [Enter] to proceed with installation.                ^|
-				echo     ^|           ^(this will take a moment.^)                                 ^|
-				pause >nul
-				IF EXIST ..\11_Big_Files (
-					pushd ..\11_Big_Files
-					IF EXIST "dotnetfx35.exe" (
-						echo     ^|         ^> Installing "dotnetfx35.exe"                                ^|
-						call "dotnetfx35.exe"
-						IF "%ERRORLEVEL%" EQU "0" (
-							echo     ^|           + Completed.                                               ^|
-						) ELSE (
-							echo     ^|           x Completed with error.                                    ^|
-						)
-					) ELSE (
-						REM /* skip when file not found
-						echo     ^|         x Skipped installation, "dotnetfx35.exe" not found.          ^|
-					)
-					popd
-				) ELSE (
-					echo     ^|         x Skipped installation, 11_Big_Files folder not found.       ^|
-				)
-			)
+    echo     ========================================================================
+    echo     ^|    04 Crystal Runtime XI setup . . .                                 ^|
+    echo     ^|======================================================================^|
+    REM /* detect IF application already installed -- find program folder
+    REM /*   \SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\Crystal Reports 2011
+    echo     ^|       ^> Scanning existing installation . . .                         ^|
+    IF NOT EXIST "%ProgFiles%\Business Objects\BusinessObjects Enterprise 11.5\" (
+        echo     ^|         + No existing installation found.                            ^|
+        IF "%cmdv%" EQU "1" (
+            echo     ^|                                                                      ^|
+            echo     ^|       ^> Checking DotNET Framework v3.5 installation . . .            ^|
+            IF EXIST "%windir%\Microsoft.NET\Framework\v3.5" (
+                echo     ^|         + DotNET Framework v3.5 already installed.                   ^|
+            ) ELSE (
+                echo     ^|         x DotNET Framework v3.5 not found.                           ^|
+                echo     ^|         - Press [Enter] to proceed with installation.                ^|
+                echo     ^|           ^(this will take a moment.^)                                 ^|
+                pause >nul
+                IF EXIST ..\11_Big_Files (
+                    pushd ..\11_Big_Files
+                    IF EXIST "dotnetfx35.exe" (
+                        echo     ^|         ^> Installing "dotnetfx35.exe"                                ^|
+                        call "dotnetfx35.exe"
+                        IF "%ERRORLEVEL%" EQU "0" (
+                            echo     ^|           + Completed.                                               ^|
+                        ) ELSE (
+                            echo     ^|           x Completed with error.                                    ^|
+                        )
+                    ) ELSE (
+                        REM /* skip when file not found
+                        echo     ^|         x Skipped installation, "dotnetfx35.exe" not found.          ^|
+                    )
+                    popd
+                ) ELSE (
+                    echo     ^|         x Skipped installation, 11_Big_Files folder not found.       ^|
+                )
+            )
 
-		)
-		echo     ^|                                                                      ^|
-		echo     ^|       ^> Installing "CrystalRunTime XI Service Pack 3.msi"            ^|
-		call "CrystalRunTime XI Service Pack 3.msi" /quiet /norestart
-		IF "%ERRORLEVEL%" EQU "0" (
-			echo     ^|         + Completed.                                                 ^|
-		) ELSE (
-			echo     ^|         x Completed with error.                                      ^|
-		)
-		echo     ^|                                                                      ^|
-		echo     ^|       SAP Crystal Reports Runtime Engine installed.                  ^|
-		echo     ========================================================================
-	) ELSE (
-		REM /* skip installation
-		echo     ^|         x Crystal Reports already installed. Skipping installation.  ^|
-		echo     ^|         - To proceed with installation, please uninstall first.      ^|
-		echo     ^|                                                                      ^|
-		echo     ^|       Crystal Reports installation aborted.                          ^|
-		echo     ========================================================================
-	)
-	popd
+        )
+        echo     ^|                                                                      ^|
+        echo     ^|       ^> Installing "CrystalRunTime XI Service Pack 3.msi"            ^|
+        call "CrystalRunTime XI Service Pack 3.msi" /quiet /norestart
+        IF "%ERRORLEVEL%" EQU "0" (
+            echo     ^|         + Completed.                                                 ^|
+        ) ELSE (
+            echo     ^|         x Completed with error.                                      ^|
+        )
+        echo     ^|                                                                      ^|
+        echo     ^|       Crystal Runtime XI installed.                                  ^|
+        echo     ========================================================================
+    ) ELSE (
+        REM /* skip installation
+        echo     ^|         x Crystal Reports already installed. Skipping installation.  ^|
+        echo     ^|         - To proceed with installation, please uninstall first.      ^|
+        echo     ^|                                                                      ^|
+        echo     ^|       Crystal Runtime XI installation aborted.                       ^|
+        echo     ========================================================================
+    )
+
+    echo     ========================================================================
+    echo     ^|    04 SAP Crystal Reports Runtime Engine v13 setup . . .             ^|
+    echo     ^|======================================================================^|
+    REM /* detect IF application already installed -- find program folder
+    REM /*   \SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\Crystal Reports 2011
+    echo     ^|       ^> Scanning existing installation . . .
+    IF NOT EXIST "%ProgFiles%\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0" (
+        echo     ^|         + No existing installation found.                            ^|
+        IF "%cmdv%" EQU "1" (
+            echo     ^|                                                                      ^|
+            echo     ^|       ^> Checking DotNET Framework v3.5 installation . . .            ^|
+            IF EXIST "%windir%\Microsoft.NET\Framework\v3.5" (
+                echo     ^|         + DotNET Framework v3.5 already installed.                   ^|
+            ) ELSE (
+                echo     ^|         x DotNET Framework v3.5 not found.                           ^|
+                echo     ^|         - Press [Enter] to proceed with installation.                ^|
+                echo     ^|           ^(this will take a moment.^)                                 ^|
+                pause >nul
+                IF EXIST ..\11_Big_Files (
+                    pushd ..\11_Big_Files
+                    IF EXIST "dotnetfx35.exe" (
+                        echo     ^|         ^> Installing "dotnetfx35.exe"                                ^|
+                        call "dotnetfx35.exe"
+                        IF "%ERRORLEVEL%" EQU "0" (
+                            echo     ^|           + Completed.                                               ^|
+                        ) ELSE (
+                            echo     ^|           x Completed with error.                                    ^|
+                        )
+                    ) ELSE (
+                        REM /* skip when file not found
+                        echo     ^|         x Skipped installation, "dotnetfx35.exe" not found.          ^|
+                    )
+                    popd
+                ) ELSE (
+                    echo     ^|         x Skipped installation, 11_Big_Files folder not found.       ^|
+                )
+            )
+
+        )
+        echo     ^|                                                                      ^|
+        echo     ^|       ^> Installing "CrystalRunTime XI Service Pack 3.msi"            ^|
+        call "CRRuntime_32bit_13_0_6.msi" /quiet /norestart
+        IF "%ERRORLEVEL%" EQU "0" (
+            echo     ^|         + Completed.                                                 ^|
+        ) ELSE (
+            echo     ^|         x Completed with error.                                      ^|
+        )
+        echo     ^|                                                                      ^|
+        echo     ^|       SAP Crystal Reports Runtime Engine v13 installed.              ^|
+        echo     ========================================================================
+    ) ELSE (
+        REM /* skip installation
+        echo     ^|         x Crystal Reports already installed. Skipping installation.  ^|
+        echo     ^|         - To proceed with installation, please uninstall first.      ^|
+        echo     ^|                                                                      ^|
+        echo     ^|       SAP Crystal Reports Runtime Engine v13 installation aborted.   ^|
+        echo     ========================================================================
+    )
+    popd
 ) ELSE (
 	echo.
 	call :printLine
@@ -1015,6 +1075,7 @@ IF "%1" EQU "4" (
 	set i4stat=OK
 	set i4mesg=
 	call :checkFile i4stat i4mesg "04_CRV\CrystalRunTime XI Service Pack 3.msi"
+	call :checkFile i4stat i4mesg "04_CRV\CRRuntime_32bit_13_0_6.msi"
 )
 REM /* checks Progress WebClient v9 files
 IF "%1" EQU "5" (
