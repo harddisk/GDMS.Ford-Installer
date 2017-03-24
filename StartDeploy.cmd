@@ -96,7 +96,7 @@ REM /* Type 1: Windows 2000, XP, 2003, Win8 privilege checks
 IF "%atype%" EQU "1" (
 	REM /* Windows 2000, XP, 2003 command prompt scripting
 	net session >nul 2>&1
-	IF "%ERRORLEVEL%" EQU "0" (
+	IF "!ERRORLEVEL!" EQU "0" (
 		set IsAdmin=1
 	) ELSE (
 		echo.
